@@ -1,8 +1,8 @@
 import express from 'express'
-import test1 from '../controllers/user.controller.js'
+import test from '../controllers/user.controller.js'
 const router = express.Router();
 
-router.get( '/' , test1);
+router.get( '/' , test);
 
 ///inorder to use the route anywhere we need export
 
