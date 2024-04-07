@@ -29,3 +29,15 @@ app.listen( 3000, () => {
 //api route is an url that allows us to access api resources
 app.use( '/api/user' , userRoutes);
 app.use('/api/auth', authRoutes);
+
+
+///middleware
+app.use((err, req , res , next) => {
+    const statusCode = res.statusCode || 500;
+    const message = res.message || 'Internal Server Error!';
+    return res.status(statusCode).json({
+      success: false,
+      message,
+      statusCode
+    });
+});

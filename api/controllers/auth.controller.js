@@ -2,8 +2,11 @@
 // while respose is the data we send back to client side
  import User from '../models/user.model.js';
  import bcryptjs from 'bcryptjs'; //encrypting pass before adding data to db
+ import { errorHandler}  from '../utils/error.js';
 
-const signup = async (req , res) =>{
+
+const signup = async (req , res , next) =>{
+    //next here is basically calling the middleware function
     //this basically print all the data
    console.log(req.body);
    //but we want to destructure the data and save to our db
@@ -19,7 +22,11 @@ const signup = async (req , res) =>{
     res.status(201).json({message : "User created successully"}); 
 
   }catch(error){
-     res.status(500).json(error.message);
+    //caaling middleware
+     next(error);
+     //calling custom error
+    //next(errorHandler(300,"error handler working"));
+
   }
   
 };
